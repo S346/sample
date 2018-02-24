@@ -26,6 +26,15 @@
                 <td>
                     {{ link_to_action('Admin\ScheduleController@show', '詳細', [$schedule->id]) }}
                     {{ link_to_action('Admin\ScheduleController@edit', '編集', [$schedule->id]) }}
+                    {!! Form::model($schedule,
+                        ['url' => [
+                            'admin/schedule', $schedule->id],
+                            'method' => 'delete'
+                        ]) !!}
+                        {!! Form::submit('削除', [
+                            'onclick' => "return confirm('本当に削除しますか?')"
+                        ]) !!}
+                    {!! Form::close() !!}
                 </td>
             </tr>
         @endforeach

@@ -3,21 +3,14 @@
 @section('content')
 <div>
     edit
-    <table>
-        <tr>
-            <th>タイトル</th>
-            <th>日付</th>
-            <th>Open</th>
-            <th>Start</th>
-            <th>Charge</th>
-        </tr>
-        <tr>
-            <td>{{ $schedule->title }}</td>
-            <td>{{ $schedule->date }}</td>
-            <td>{{ $schedule->open }}</td>
-            <td>{{ $schedule->start }}</td>
-            <td>{{ $schedule->charge }}</td>
-        </tr>
-    </table>
+    {!! Form::model($schedule, [
+        'url' => [
+            'admin/schedule',
+            $schedule->id
+        ],
+        'method' => 'PATCH'
+    ]) !!}
+        @include('admin.schedule.form')
+    {!! Form::close() !!}
 </div>
 @endsection
