@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    edit
+<div class="container">
     {!! Form::model($schedule, [
         'url' => [
             'admin/schedule',

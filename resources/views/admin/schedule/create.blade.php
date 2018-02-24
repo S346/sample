@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    create
+<div class="container">
     {!! Form::open(['url' => 'admin/schedule']) !!}
         @include('admin.schedule.form')
     {!! Form::close() !!}
