@@ -19,4 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/schedule', 'ScheduleController');
+Route::resource('/schedule', 'ScheduleController', ['only' => [
+    'index', 'show'
+]]);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::resource('/schedule', 'Admin\ScheduleController');
+});
