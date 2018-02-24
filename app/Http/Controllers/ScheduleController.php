@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Http\Controllers\Controller;
 use App\Schedule;
 
 class ScheduleController extends Controller
 {
-    public function index()
-    {
-        $schedules = Schedule::all();
-        return view('schedule', compact('schedules'));
+    public function index() {
+        $schedules = Schedule::orderBy('date')->get();
+        return view('schedule.index', compact('schedules'));
+    }
+
+    public function show($id) {
+        $schedule = Schedule::findOrFail($id);
+        return view('schedule.show', compact('schedule'));
     }
 }
