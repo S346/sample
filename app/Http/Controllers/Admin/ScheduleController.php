@@ -17,7 +17,8 @@ class ScheduleController extends Controller
     }
 
     public function create() {
-        return view('admin.schedule.create');
+        $schedule = new Schedule();
+        return view('admin.schedule.create', compact('schedule'));
     }
 
     public function store(Request $request) {
