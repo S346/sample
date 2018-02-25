@@ -23,15 +23,15 @@
     <article class="my-3">
         <div class="row py-2">
             <div class="col-2">日付</div>
-            <div class="col-4">{{ $schedule->getDate() }}</div>
+            <div class="col-4">{{ $schedule->date }}</div>
         </div>
         <div class="row py-2">
             <div class="col-2">Open</div>
-            <div class="col-4">{{ $schedule->getOpen() }}</div>
+            <div class="col-4">{{ $schedule->open }}</div>
         </div>
         <div class="row py-2">
             <div class="col-2">Start</div>
-            <div class="col-4">{{ $schedule->getStart() }}</div>
+            <div class="col-4">{{ $schedule->start }}</div>
         </div>
         <div class="row py-2">
             <div class="col-2">Music Charge</div>

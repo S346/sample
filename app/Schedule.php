@@ -13,17 +13,4 @@ class Schedule extends Model
         'updated_at',
         'deleted_at'
     ];
-
-    public function getDate () {
-        $dateTime = new DateTime($this->open);
-        return $dateTime->format('Y/m/d');
-    }
-    public function getOpen () {
-        $dateTime = new DateTime($this->open);
-        return $dateTime->format('H:i');
-    }
-    public function getStart () {
-        $dateTime = new DateTime($this->start);
-        return $dateTime->format('H:i');
-    }
 }

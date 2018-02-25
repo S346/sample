@@ -15,7 +15,7 @@
             </tr>
         @foreach($schedules as $schedule)
             <tr>
-                <td class="align-middle">{{ $schedule->getDate() }}</td>
+                <td class="align-middle">{{ $schedule->date }}</td>
                 <td class="align-middle">
                     {{ link_to_action('Admin\ScheduleController@show', $schedule->title, [$schedule->id]) }}
                 </td>

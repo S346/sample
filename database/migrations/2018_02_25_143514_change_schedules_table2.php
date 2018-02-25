@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeSchedulesTable extends Migration
+class ChangeSchedulesTable2 extends Migration
 {
     /**
      * Run the migrations.
@@ -28,7 +28,7 @@ class ChangeSchedulesTable extends Migration
     {
         Schema::table('schedules', function (Blueprint $table) {
             //
-            $table->string('title')->default(null)->change();
+            $table->string('title')->default()->change();
         });
     }
 }

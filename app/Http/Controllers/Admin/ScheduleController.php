@@ -22,8 +22,7 @@ class ScheduleController extends Controller
     }
 
     public function store(Request $request) {
-        $this->setDateTimeData($request);
-        Schedule::create($this->data);
+        Schedule::create($request->all());
         \Session::flash('flash_message', '記事を作成しました。');
         return redirect('admin/schedule');
     }
@@ -40,8 +39,7 @@ class ScheduleController extends Controller
 
     public function update(Request $request, $id) {
         $schedule = Schedule::findOrFail($id);
-        $this->setDateTimeData($request);
-        $schedule->update($this->data);
+        $schedule->update($request->all());
 
         \Session::flash('flash_message', '記事を更新しました。');
         return redirect('admin/schedule');
@@ -52,22 +50,5 @@ class ScheduleController extends Controller
         $schedule->delete($id);
         \Session::flash('flash_message', '記事を削除しました。');
         return redirect('admin/schedule');
-    }
-
-    public function setDateTimeData($r) {
-        $this->data = $r->except('date');
-        $date = '9999-12-31';
-        if (!is_null($r->date)) {
-            $date = $r->date;
-        }
-        $this->data['open'] = $this->combineDateAndTime($date, $r->open);
-        $this->data['start'] = $this->combineDateAndTime($date, $r->start);
-    }
-
-    public function combineDateAndTime($d, $t) {
-        $date = new DateTime($d);
-        $time = new DateTime($t);
-        $date->setTime((int)$time->format('H'), (int)$time->format('i'));
-        return $date;
     }
 }
