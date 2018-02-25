@@ -5,17 +5,17 @@
 
 <div class="form-group row">
     {!! Form::label('date', '日付', ['class' => 'col-2 col-form-label']) !!}
-    <div class="col-4">{!! Form::text('date', $schedule->open, ['class' => 'form-control']) !!}</div>
+    <div class="col-4">{!! Form::text('date', $schedule->getDate(), ['class' => 'form-control']) !!}</div>
 </div>
 
 <div class="form-group row">
     {!! Form::label('open', 'Open', ['class' => 'col-2 col-form-label']) !!}
-    <div class="col-4">{!! Form::text('open', null, ['class' => 'form-control']) !!}</div>
+    <div class="col-4">{!! Form::text('open', $schedule->getOpen(), ['class' => 'form-control']) !!}</div>
 </div>
 
 <div class="form-group row">
     {!! Form::label('start', 'Start', ['class' => 'col-2 col-form-label']) !!}
-    <div class="col-4">{!! Form::text('start', null, ['class' => 'form-control']) !!}</div>
+    <div class="col-4">{!! Form::text('start', $schedule->getStart(), ['class' => 'form-control']) !!}</div>
 </div>
 
 <div class="form-group row">
