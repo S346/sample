@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+require('./setDatepicker');
+require('pikaday/plugins/pikaday.jquery');
 
 window.Vue = require('vue');
 
