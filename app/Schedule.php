@@ -10,12 +10,6 @@ class Schedule extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
-        'date'
+        'deleted_at'
     ];
-
-    public function dateString($date) {
-        // toDo nullの時の対応
-        return $date->format('Y/m/d');
-    }
 }

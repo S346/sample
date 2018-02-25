@@ -5,7 +5,7 @@
 
 <div class="form-group row">
     {!! Form::label('date', '日付', ['class' => 'col-2 col-form-label']) !!}
-    <div class="col-4">{!! Form::text('date', null, ['class' => 'form-control']) !!}</div>
+    <div class="col-4">{!! Form::text('date', $schedule->open, ['class' => 'form-control']) !!}</div>
 </div>
 
 <div class="form-group row">

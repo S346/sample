@@ -23,7 +23,7 @@
     <article class="my-3">
         <div class="row py-2">
             <div class="col-2">日付</div>
-            <div class="col-4">{{ $schedule->dateString($schedule->date) }}</div>
+            <div class="col-4">{{ $schedule->open }}</div>
         </div>
         <div class="row py-2">
             <div class="col-2">Open</div>

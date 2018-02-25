@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Schedule;
+use DateTime;
 
 class ScheduleController extends Controller
 {
+    public $data;
+
     public function index() {
-        $schedules = Schedule::orderBy('date')->get();
+        $schedules = Schedule::orderBy('open')->get();
         return view('admin.schedule.index', compact('schedules'));
     }
 
@@ -18,7 +21,8 @@ class ScheduleController extends Controller
     }
 
     public function store(Request $request) {
-        Schedule::create($request->all());
+        $this->setDateTimeData($request);
+        Schedule::create($this->data);
         \Session::flash('flash_message', '記事を作成しました。');
         return redirect('admin/schedule');
     }
@@ -35,7 +39,8 @@ class ScheduleController extends Controller
 
     public function update(Request $request, $id) {
         $schedule = Schedule::findOrFail($id);
-        $schedule->update($request->all());
+        $this->setDateTimeData($request);
+        $schedule->update($this->data);
 
         \Session::flash('flash_message', '記事を更新しました。');
         return redirect('admin/schedule');
@@ -46,5 +51,22 @@ class ScheduleController extends Controller
         $schedule->delete($id);
         \Session::flash('flash_message', '記事を削除しました。');
         return redirect('admin/schedule');
+    }
+
+    public function setDateTimeData($r) {
+        $this->data = $r->except('date');
+        $date = '9999-12-31';
+        if (!is_null($r->date)) {
+            $date = $r->date;
+        }
+        $this->data['open'] = $this->combineDateAndTime($date, $r->open);
+        $this->data['start'] = $this->combineDateAndTime($date, $r->start);
+    }
+
+    public function combineDateAndTime($d, $t) {
+        $date = new DateTime($d);
+        $time = new DateTime($t);
+        $date->setTime((int)$time->format('H'), (int)$time->format('i'));
+        return $date;
     }
 }
