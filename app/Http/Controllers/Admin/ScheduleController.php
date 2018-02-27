@@ -10,9 +10,10 @@ use DateTime;
 class ScheduleController extends Controller
 {
     public $data;
+    public $defaultDate = '1970-01-01';
 
     public function index() {
-        $schedules = Schedule::orderByRaw('date IS NULL ASC')->get();
+        $schedules = Schedule::orderByRaw('date IS NULL')->orderBy('date')->get();
         return view('admin.schedule.index', compact('schedules'));
     }
 
@@ -58,13 +59,23 @@ class ScheduleController extends Controller
     public function setDateTimeData($r) {
         $schedule = new Schedule();
         $this->data = $r->except(['openH', 'openI', 'startH', 'startI']);
-        $this->data['open'] = $this->setTime($schedule->hours[$r->openH], $schedule->minutes[$r->openI]);
-        $this->data['start'] = $this->setTime($schedule->hours[$r->startH], $schedule->minutes[$r->startI]);
+        $date = $this->data['date'];
+        $openH = $schedule->hours[$r->openH];
+        $openI = $schedule->minutes[$r->openI];
+        $startH = $schedule->hours[$r->startH];
+        $startI = $schedule->minutes[$r->startI];
+
+        if(!is_null($date)) $this->data['date'] = $this->setTime($date, $openH, $openI);
+        $this->data['open'] = $this->setTime(null, $openH, $openI);
+        $this->data['start'] = $this->setTime(null, $startH, $startI);
     }
 
-    public function setTime($h, $i) {
-        if(is_null($h) || is_null($i)) return;
-        $result = new DateTime('1970-01-01');
+    public function setTime($d, $h, $i) {
+        if(is_null($h) || is_null($i)) {
+            if(is_null($d)) return;
+            $h = $i = 0;
+        }
+        $result = (is_null($d)) ? new DateTime($this->defaultDate) : new DateTime($d);
         $result->setTime($h, $i);
         return $result;
     }
