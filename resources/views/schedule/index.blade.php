@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="">
+<div id="app">
+    <calender></calender>
     @if ($schedules->isEmpty())
         <p>No Schedule</p>
     @else
