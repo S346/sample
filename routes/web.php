@@ -17,12 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('/schedule', 'ScheduleController', ['only' => [
     'index', 'show'
 ]]);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('/', 'Admin\HomeController@index')->name('home');
     Route::resource('/schedule', 'Admin\ScheduleController');
 });
