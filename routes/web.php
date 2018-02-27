@@ -25,3 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', 'Admin\HomeController@index')->name('home');
     Route::resource('/schedule', 'Admin\ScheduleController');
 });
+
+Route::group(['prefix' => 'api'], function() {
+    Route::get('/schedule', 'Api\ScheduleController@index');
+});
