@@ -1,13 +1,28 @@
 <template>
-    <div>
-        This is a calender component!
-    </div>
+    <ul>
+        <li v-for="item in items">
+            {{ item.title }}
+        </li>
+    </ul>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                items: []
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            var _this = this;
+            $.ajax({
+                url: "/api/schedule",
+                type: "GET",
+                dataType: "json",
+            })
+            .then( function(data) {
+                _this.items = data;
+            })
         }
     }
 </script>

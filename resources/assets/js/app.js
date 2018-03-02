@@ -1,3 +1,5 @@
+require('./libraries/bootstrap');
+
 window.Vue = require('vue');
 
 Vue.component('calender', require('./components/calender.vue'));

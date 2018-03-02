@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('../libraries/bootstrap');
 require('./setDatepicker');
 require('pikaday/plugins/pikaday.jquery');
 
