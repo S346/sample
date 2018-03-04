@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/schedule/', 'Api\ScheduleController@defaultMonth');
+Route::get('/schedule/{year}/{month}/', 'Api\ScheduleController@specificMonth');
