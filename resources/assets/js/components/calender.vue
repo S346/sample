@@ -1,17 +1,26 @@
 <template>
     <section class="calender">
+        <h2>{{year}} / {{month}}</h2>
+        <ul class="btns">
+            <li v-on:click="prev()">←</li>
+            <li v-on:click="next()">→</li>
+        </ul>
         <ul>
             <calender-item v-for='(day, index) in days' :items='day' :date='index+1' :key='index'></calender-item>
         </ul>
-        <p v-on:click="prev()">←</p>
-        <p v-on:click="next()">→</p>
     </section>
 </template>
 
 <style scoped>
+h2,
 ul {
-    max-width: 800px;
-    margin: 30px auto;
+    margin: 30px 0;
+}
+.btns {
+    display: flex;
+}
+.btns li + li {
+    margin-left: 20px;
 }
 </style>
 
@@ -23,12 +32,12 @@ ul {
         },
         data() {
             return {
+                year: new Date().getFullYear(),
+                month: new Date().getMonth() + 1,
                 days: []
             }
         },
         mounted() {
-            this.year = new Date().getFullYear();
-            this.month = new Date().getMonth() + 1;
             this.getData(this.year, this.month);
         },
         methods: {

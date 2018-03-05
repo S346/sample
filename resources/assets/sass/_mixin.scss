@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+// media queris
+$breakpoint: 648px;
+@mixin SP {
+    @media screen and (max-width: $breakpoint - 1) {
+        @content;
+    }
+}
+
+@mixin PC {
+    @media screen and (min-width: $breakpoint) {
+        @content;
+    }
+}

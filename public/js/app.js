@@ -25208,6 +25208,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25216,12 +25225,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth() + 1,
             days: []
         };
     },
     mounted: function mounted() {
-        this.year = new Date().getFullYear();
-        this.month = new Date().getMonth() + 1;
         this.getData(this.year, this.month);
     },
 
@@ -47790,7 +47799,7 @@ exports = module.exports = __webpack_require__(175)(false);
 
 
 // module
-exports.push([module.i, "\nul[data-v-5cf0985e] {\n    max-width: 800px;\n    margin: 30px auto;\n}\n", ""]);
+exports.push([module.i, "\nh2[data-v-5cf0985e],\nul[data-v-5cf0985e] {\n    margin: 30px 0;\n}\n.btns[data-v-5cf0985e] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.btns li + li[data-v-5cf0985e] {\n    margin-left: 20px;\n}\n", ""]);
 
 // exports
 
@@ -47804,6 +47813,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "calender" }, [
+    _c("h2", [_vm._v(_vm._s(_vm.year) + " / " + _vm._s(_vm.month))]),
+    _vm._v(" "),
+    _c("ul", { staticClass: "btns" }, [
+      _c(
+        "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.prev()
+            }
+          }
+        },
+        [_vm._v("←")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.next()
+            }
+          }
+        },
+        [_vm._v("→")]
+      )
+    ]),
+    _vm._v(" "),
     _c(
       "ul",
       _vm._l(_vm.days, function(day, index) {
@@ -47812,30 +47849,6 @@ var render = function() {
           attrs: { items: day, date: index + 1 }
         })
       })
-    ),
-    _vm._v(" "),
-    _c(
-      "p",
-      {
-        on: {
-          click: function($event) {
-            _vm.prev()
-          }
-        }
-      },
-      [_vm._v("←")]
-    ),
-    _vm._v(" "),
-    _c(
-      "p",
-      {
-        on: {
-          click: function($event) {
-            _vm.next()
-          }
-        }
-      },
-      [_vm._v("→")]
     )
   ])
 }
